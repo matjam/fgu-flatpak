@@ -36,6 +36,7 @@ jobs:
       - name: Build Flatpak application
         run: |
           flatpak-builder \
+            --user \
             --force-clean \
             --repo=repo-dir \
             --install-deps-from=flathub \
