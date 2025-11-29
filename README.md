@@ -4,11 +4,36 @@ This repository contains the **build tooling and Flatpak manifest** for running 
 It **does not contain, bundle, redistribute, or modify** any Fantasy Grounds Unity binaries or assets, other than the Fantasy Grounds application icon.
 
 Instead, the Flatpak:
+
 - Downloads the **official Fantasy Grounds Unity installer** from the Fantasy Grounds / SmiteWorks servers at install time
 - Runs that installer inside a Flatpak runtime
 - Launches the **unaltered official client** inside that sandbox
 
 You are always running the official upstream client; this project is only a wrapper around it.
+
+---
+
+## Quick install
+
+- **Download the Flatpak bundle**  
+  Go to the [Releases page](https://github.com/matjam/fgu-flatpak/releases) and download the latest `com.smiteworks.FantasyGrounds.flatpak` file from the newest release.
+
+- **Install the Flatpak bundle**  
+  From a terminal in the directory where you downloaded the file:
+
+  ```bash
+  flatpak install ./com.smiteworks.FantasyGrounds.flatpak
+  ```
+
+- **Run it once from the CLI to accept licensing and run the installer**  
+  On first run, the Flatpak will download and execute the official Fantasy Grounds Unity installer inside the sandbox:
+
+  ```bash
+  flatpak run com.smiteworks.FantasyGrounds
+  ```
+
+  Follow the prompts to accept the Fantasy Grounds license and complete the official installer.
+
 
 ---
 
