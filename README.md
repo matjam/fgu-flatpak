@@ -34,6 +34,12 @@ You are always running the official upstream client; this project is only a wrap
 
   Follow the prompts to accept the Fantasy Grounds license and complete the official installer.
 
+- **Uninstall if you no longer need it**
+
+  ```bash
+  flatpak uninstall com.smiteworks.FantasyGrounds
+  ```
+
 
 ---
 
@@ -66,7 +72,7 @@ This project is strictly a **packaging/build tool**. It exists to make it more c
 
 ---
 
-## Building the Flatpak locally
+## Manually Building the Flatpak locally
 
 You will need:
 - `flatpak`
@@ -104,21 +110,6 @@ flatpak install com.smiteworks.FantasyGrounds.flatpak
 ```
 
 On first run, the Flatpak will download and execute the **official Fantasy Grounds Unity installer** from the Fantasy Grounds website.
-
----
-
-## GitHub Actions builds
-
-This repository includes a GitHub Actions workflow that:
-- Builds the Flatpak using `flatpak-builder`
-- Exports a `.flatpak` bundle
-- Publishes each successful build as a **GitHub Release** with a monotonically increasing numeric tag (`1`, `2`, `3`, …)
-
-You can download the latest `.flatpak` from the **Releases** page of this repository and install it with:
-
-```bash
-flatpak install ./com.smiteworks.FantasyGrounds.flatpak
-```
 
 ---
 
