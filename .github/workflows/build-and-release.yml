@@ -71,6 +71,11 @@ jobs:
           git tag "${{ steps.get_version.outputs.tag }}"
           git push origin "${{ steps.get_version.outputs.tag }}"
 
+      - name: Set build date
+        id: build_date
+        run: |
+          echo "date=$(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_OUTPUT
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
@@ -88,7 +93,7 @@ jobs:
             **Build Information:**
             - Commit: ${{ github.sha }}
             - Branch: ${{ github.ref_name }}
-            - Build Date: $(date -u +"%Y-%m-%d %H:%M:%S UTC")
+            - Build Date: ${{ steps.build_date.outputs.date }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
