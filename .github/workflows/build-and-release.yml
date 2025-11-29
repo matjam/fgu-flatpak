@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Install Flatpak and dependencies
         run: |
@@ -51,12 +53,23 @@ jobs:
             com.smiteworks.FantasyGrounds \
             stable
 
-      - name: Get version/tag from commit
+      - name: Determine next release tag
         id: get_version
         run: |
-          VERSION=$(git describe --tags --always --dirty 2>/dev/null || echo "v$(date +%Y%m%d)-$(git rev-parse --short HEAD)")
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "tag=$VERSION" >> $GITHUB_OUTPUT
+          git fetch --tags --force
+          LAST_TAG=$(git tag --list '[0-9]*' | sort -n | tail -n 1)
+          if [ -z "$LAST_TAG" ]; then
+            NEXT_TAG=1
+          else
+            NEXT_TAG=$((LAST_TAG + 1))
+          fi
+          echo "version=$NEXT_TAG" >> $GITHUB_OUTPUT
+          echo "tag=$NEXT_TAG" >> $GITHUB_OUTPUT
+
+      - name: Create and push git tag
+        run: |
+          git tag "${{ steps.get_version.outputs.tag }}"
+          git push origin "${{ steps.get_version.outputs.tag }}"
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
