@@ -1,0 +1,70 @@
+id: com.smiteworks.FantasyGrounds
+runtime: org.freedesktop.Platform
+runtime-version: '23.08'
+sdk: org.freedesktop.Sdk
+branch: stable
+command: fantasygrounds
+
+finish-args:
+  # Display
+  - --socket=x11
+  - --device=dri
+
+  # Force toolkits to use X11
+  - --env=GDK_BACKEND=x11
+  - --env=SDL_VIDEODRIVER=x11
+  - --env=QT_QPA_PLATFORM=xcb
+  - --env=XDG_SESSION_TYPE=x11
+
+  # Audio
+  - --socket=pulseaudio
+
+  # Network (needed for installer & updates)
+  - --share=network
+
+  # Optional: let us see ~/Downloads so we can reuse FGUWebInstall.bin
+  - --filesystem=xdg-download
+
+  # Persist the smiteworks bin folder, inside the flatpak; not on the real home dir.
+  - --persist=.smiteworks/fantasygrounds
+
+  # Place fgdata in the real homedir.
+  - --filesystem=home/.smiteworks/fgdata:create
+
+  # FGU uses .config/smiteworks for its configuration.
+  - --filesystem=home/.config/smiteworks:create
+
+
+modules:
+  # 1) Build curl inside the app so fg-launcher can download the installer
+  - name: curl
+    buildsystem: autotools
+    config-opts:
+      - --disable-static
+      - --with-openssl
+    sources:
+      - type: archive
+        url: https://curl.se/download/curl-8.11.0.tar.gz
+        sha256: 264537d90e58d2b09dddc50944baf3c38e7089151c8986715e2aaeaaf2b8118f
+
+  # 2) Our launcher + desktop + icon
+  - name: fantasygrounds-launcher
+    buildsystem: simple
+
+    build-commands:
+      # launcher
+      - install -D fg-launcher.sh /app/bin/fantasygrounds
+
+      # desktop file
+      - install -D com.smiteworks.FantasyGrounds.desktop /app/share/applications/com.smiteworks.FantasyGrounds.desktop
+
+      # icon (adjust sizes / additional resolutions if you care)
+      - install -D icons/hicolor/256x256/apps/com.smiteworks.FantasyGrounds.png /app/share/icons/hicolor/256x256/apps/com.smiteworks.FantasyGrounds.png
+
+      # appstream data
+      - install -D com.smiteworks.FantasyGrounds.metainfo.xml /app/share/metainfo/com.smiteworks.FantasyGrounds.metainfo.xml
+
+    sources:
+      - type: dir
+        path: files
+

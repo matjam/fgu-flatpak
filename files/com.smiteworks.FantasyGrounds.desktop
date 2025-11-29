@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Fantasy Grounds
+Comment=Fantasy Grounds Unity (Flatpak wrapper)
+Exec=fantasygrounds
+Icon=com.smiteworks.FantasyGrounds
+Terminal=false
+Categories=Game;RolePlaying;
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.smiteworks.FantasyGrounds</id>
+  <name>Fantasy Grounds</name>
+  <summary>Virtual tabletop</summary>
+
+  <!-- This is the license of THIS XML FILE, not the app -->
+  <metadata_license>CC0-1.0</metadata_license>
+
+  <!-- This is the license of the actual app -->
+  <project_license>LicenseRef-proprietary</project_license>
+
+  <description>
+    <p>Fantasy Grounds Unity launcher inside a Flatpak sandbox.</p>
+    <p>Note that no application files are distributed with this flatpak; all files are downloaded from the
+    official Smiteworks FantasyGrounds website and installed inside the flatpak on install.</p>
+  </description>
+
+  <launchable type="desktop-id">com.smiteworks.FantasyGrounds.desktop</launchable>
+
+  <url type="homepage">https://www.fantasygrounds.com/</url>
+
+  <categories>
+    <category>Game</category>
+  </categories>
+</component>
+

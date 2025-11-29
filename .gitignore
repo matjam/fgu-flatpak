@@ -1,0 +1,12 @@
+# Flatpak builder junk
+/.flatpak-builder/
+/build-dir/
+/repo-dir/
+/.flatpak-builder-cache/
+/.flatpak-builder-*
+
+# Flatpak bundles
+/*.flatpak
+
+# Logs / temp
+*.log
