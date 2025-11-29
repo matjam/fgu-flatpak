@@ -87,8 +87,11 @@ jobs:
             
             **Installation:**
             ```bash
-            flatpak install com.smiteworks.FantasyGrounds.flatpak
+            flatpak install --user com.smiteworks.FantasyGrounds.flatpak
+            flatpak run com.smiteworks.FantasyGrounds
             ```
+
+            You can then find Fantasy Grounds in your application menu.
             
             **Build Information:**
             - Commit: ${{ github.sha }}
