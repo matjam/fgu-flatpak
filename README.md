@@ -37,9 +37,16 @@ You are always running the official upstream client; this project is only a wrap
 - **Uninstall if you no longer need it**
 
   ```bash
-  flatpak uninstall com.smiteworks.FantasyGrounds
+  flatpak uninstall --delete-data com.smiteworks.FantasyGrounds
   ```
 
+  That removes the Flatpak and its sandboxed data.  
+  If you also want to remove **all** Fantasy Grounds data from your home directory (campaigns, modules, settings), you can delete:
+
+  ```bash
+  rm -rf ~/.smiteworks/fgdata
+  rm -rf ~/.config/smiteworks
+  ```
 
 ---
 
