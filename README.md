@@ -22,7 +22,7 @@ You are always running the official upstream client; this project is only a wrap
   From a terminal in the directory where you downloaded the file:
 
   ```bash
-  flatpak install ./com.smiteworks.FantasyGrounds.flatpak
+  flatpak install --user ./com.smiteworks.FantasyGrounds.flatpak
   ```
 
 - **Run it once from the CLI to accept licensing and run the installer**  
@@ -33,6 +33,8 @@ You are always running the official upstream client; this project is only a wrap
   ```
 
   Follow the prompts to accept the Fantasy Grounds license and complete the official installer.
+
+  If you do not do this and try to launch the app, nothing will happen. You need to accept the Fantasy Grounds license.
 
 - **Uninstall if you no longer need it**
 
